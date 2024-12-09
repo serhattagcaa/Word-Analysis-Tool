@@ -1,0 +1,98 @@
+@charset "UTF-8";
+/* === Variables === */
+/* Renk paleti */
+/* Yazı tipi */
+/* === Mixins === */
+/* === Reset Styles === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(68deg, #9c3535, #732727, #732727);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Flex merkezi ortalama */
+  min-height: 100vh;
+}
+
+/* === General Styles === */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Container içinde de aynı özellikleri kullan */
+}
+
+/* === Components === */
+.generalone {
+  display: flex;
+  justify-content: space-between; /* Öğeler arasına boşluk bırakır */
+  align-items: center; /* Öğeleri dikeyde ortalar */
+  flex-direction: column;
+}
+
+.inone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Flex merkezi ortalama */
+}
+
+.mainbox {
+  width: 766.5px;
+  height: 462px;
+  background-color: #d9d9d9; /* SCSS için */
+  border: none; /* Kenarlık kaldırıldı */
+  outline: none; /* Fokus görünümü kaldırıldı */
+  border-radius: 31px 31px 0 31px; /* Köşe yuvarlama */
+  -webkit-mask: url(/assets/imagees/small-border.svg) center/contain no-repeat, url(/assets/imagees/cutborder.svg) center/contain no-repeat, linear-gradient(#000000 0 0);
+          mask: url(/assets/imagees/small-border.svg) center/contain no-repeat, url(/assets/imagees/cutborder.svg) center/contain no-repeat, linear-gradient(#000000 0 0);
+  /* Daha hassas konumlandırma için mask-size ve mask-position */
+  -webkit-mask-size: 22rem, 35rem;
+          mask-size: 22rem, 35rem; /* Farklı maskeler için boyutlar ayrı ayrı belirlenebilir */
+  -webkit-mask-position: calc(100% + 22.7px) calc(100% - 161px), calc(100% + 90px) calc(100% + 1px);
+          mask-position: calc(100% + 22.7px) calc(100% - 161px), calc(100% + 90px) calc(100% + 1px); /* Yüzdelik ve piksel birimleriyle konumlandırma */
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+}
+
+.buttonseft {
+  width: 219px;
+  height: 179px;
+  position: absolute;
+  border: none;
+  border-radius: 31px;
+  top: 580px;
+  right: 570px;
+}
+
+.glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.editable-divone {
+  padding: 15px 15px 0 15px;
+  width: 770px;
+  height: 295px;
+  outline: none; /* Odak çerçevesini kaldırır */
+  font-size: 20px;
+}
+
+.editable-divtwo {
+  padding: 0 15px 15px 15px;
+  width: 520px;
+  height: 900;
+  outline: none; /* Odak çerçevesini kaldırır */
+  font-size: 20px;
+}
+
+/* === Animations === */
+/* Basit fade-in animasyonu *//*# sourceMappingURL=style.css.map */
