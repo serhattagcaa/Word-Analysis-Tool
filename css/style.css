@@ -2,6 +2,18 @@
 /* === Variables === */
 /* Renk paleti */
 /* Yazı tipi */
+@font-face {
+  font-family: h1title;
+  src: url(/assets/fonts/InriaSerif-Bold.ttf);
+}
+@font-face {
+  font-family: boxfont;
+  src: url(/assets/fonts/Aleo-Regular.ttf);
+}
+@font-face {
+  font-family: brandfont;
+  src: url(/assets/fonts/Aboreto-Regular.ttf);
+}
 /* === Mixins === */
 /* === Reset Styles === */
 * {
@@ -11,12 +23,24 @@
 }
 
 body {
-  background: linear-gradient(68deg, #9c3535, #732727, #732727);
+  background: linear-gradient(146deg, #9c3535, #732727);
   display: flex;
   justify-content: center;
   align-items: center;
   /* Flex merkezi ortalama */
   min-height: 100vh;
+}
+
+h1 {
+  font-size: 80px;
+  font-family: h1title;
+  background: -webkit-linear-gradient(0deg, #999999, #767676);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-bottom: 29px;
+  position: absolute;
+  top: 120px;
+  left: 530px;
 }
 
 /* === General Styles === */
@@ -54,8 +78,8 @@ body {
   /* Daha hassas konumlandırma için mask-size ve mask-position */
   -webkit-mask-size: 22rem, 35rem;
           mask-size: 22rem, 35rem; /* Farklı maskeler için boyutlar ayrı ayrı belirlenebilir */
-  -webkit-mask-position: calc(100% + 22.7px) calc(100% - 161px), calc(100% + 90px) calc(100% + 1px);
-          mask-position: calc(100% + 22.7px) calc(100% - 161px), calc(100% + 90px) calc(100% + 1px); /* Yüzdelik ve piksel birimleriyle konumlandırma */
+  -webkit-mask-position: calc(100% + 27px) calc(100% - 161px), calc(100% + 150px) calc(100% + 1px);
+          mask-position: calc(100% + 27px) calc(100% - 161px), calc(100% + 150px) calc(100% + 1px); /* y */
   -webkit-mask-composite: xor;
           mask-composite: exclude;
 }
@@ -66,8 +90,8 @@ body {
   position: absolute;
   border: none;
   border-radius: 31px;
-  top: 580px;
-  right: 570px;
+  top: 560px;
+  right: 515px;
 }
 
 .glass {
@@ -78,20 +102,57 @@ body {
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
+.svgimp {
+  background-image: url(/assets/imagees/okysvg.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .editable-divone {
   padding: 15px 15px 0 15px;
   width: 770px;
   height: 295px;
   outline: none; /* Odak çerçevesini kaldırır */
-  font-size: 20px;
+  font-size: 24px;
+  font-family: boxfont;
+  color: #000000;
 }
 
 .editable-divtwo {
   padding: 0 15px 15px 15px;
-  width: 520px;
-  height: 900;
+  width: 590px;
+  height: 200px;
   outline: none; /* Odak çerçevesini kaldırır */
-  font-size: 20px;
+  font-size: 24px;
+  font-family: boxfont;
+  color: #000000;
+}
+
+.abso {
+  position: absolute;
+  right: 43%;
+  top: 91%;
+}
+
+.brandbox {
+  width: 290px;
+  height: 86px;
+  border-radius: 16px 16px 0 0;
+  background-image: linear-gradient(0deg, #c9c0c0, #898282);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.texttobrand {
+  font-family: brandfont;
+  font-size: 40px;
+}
+
+.rr {
+  font-size: 25px;
+  padding-bottom: 35px;
 }
 
 /* === Animations === */
