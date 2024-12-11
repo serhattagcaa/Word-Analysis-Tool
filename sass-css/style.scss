@@ -20,6 +20,10 @@ $brandbox: linear-gradient(0deg, #c9c0c0, #898282);
   font-family: brandfont;
   src: url(/assets/fonts/Aboreto-Regular.ttf);
 }
+@font-face {
+  font-family: boxİnFont;
+  src: url(/assets/fonts/NotoSerifKR-ExtraLight.ttf);
+}
 
 /* === Mixins === */
 @mixin flex-center {
@@ -48,16 +52,15 @@ body {
   min-height: 100vh;
 }
 
-h1 {
+.h1one {
   font-size: 80px;
   font-family: h1title;
   background: $h1titlebg;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   padding-bottom: 29px;
-  position: absolute;
-  top: 120px;
-  left: 530px;
+  position: relative;
+  left: -240px;
 }
 
 /* === General Styles === */
@@ -66,14 +69,18 @@ h1 {
 }
 
 /* === Components === */
-.generalone {
+.generalone,
+.generaltwo {
   @include flex-col;
 }
 
-.inone {
+.inone,
+.intwo {
   @include flex-center; /* Flex merkezi ortalama */
 }
 .mainbox {
+  position: relative;
+  right: -110px;
   width: 766.5px;
   height: 462px;
   background-color: $mainboxcolor; /* SCSS için */
@@ -96,11 +103,12 @@ h1 {
 .buttonseft {
   width: 219px;
   height: 179px;
-  position: absolute;
+  position: relative;
   border: none;
   border-radius: 31px;
-  top: 560px;
-  right: 515px;
+  top: 175px;
+  right: 50px;
+  z-index: 1;
 }
 
 .glass {
@@ -111,7 +119,6 @@ h1 {
   );
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-radius: 20px;
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
@@ -136,6 +143,81 @@ h1 {
   width: 590px;
   height: 200px;
   outline: none; /* Odak çerçevesini kaldırır */
+  font-size: 24px;
+  font-family: boxfont;
+  color: #000000;
+  overflow-y: hidden;
+}
+
+.highone {
+  width: 900px;
+  height: 720px;
+  animation: fadeBlurMove 2s ease-in-out forwards;
+  overflow-x: 500px;
+}
+
+.hightwo {
+  display: none; /* Başlangıçta gizli */
+  width: 900px;
+  height: 720px;
+  overflow: hidden;
+  position: relative;
+  top: -2px;
+  z-index: -1;
+  animation: fadeBlurMove 2s ease-in-out forwards;
+}
+
+.h1two {
+  font-size: 80px;
+  font-family: h1title;
+  background: $h1titlebg;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  top: 5px;
+  right: -120px;
+}
+
+.mainboxtwo {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  width: 766.5px;
+  height: 462px;
+  position: relative;
+  right: -65px;
+  top: -127px;
+  border: none; /* Kenarlık kaldırıldı */
+  outline: none; /* Fokus görünümü kaldırıldı */
+  border-radius: 31px 31px 31px 31px; /* Köşe yuvarlama */
+}
+
+.boxFours {
+  display: grid;
+  justify-items: center;
+}
+
+.h1Three {
+  margin-top: 20px;
+  font-family: boxİnFont;
+  font-size: 22px;
+  color: #fff;
+}
+
+.boxFoursİn {
+  width: 258px;
+  height: 66px;
+  border-radius: 25px;
+  background-color: #e5e2ed;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+.boxFoursİn > p {
   font-size: 24px;
   font-family: boxfont;
   color: #000000;
@@ -165,5 +247,80 @@ h1 {
   font-size: 25px;
   padding-bottom: 35px;
 }
+
+/* === Again === */
+/* Basit fade-in animasyonu */
+
+.no-left-mask {
+  animation: maskAnimation 2s ease-in-out forwards; /* Animasyon ekledik */
+}
+
+.tobuttonseft {
+  animation: buttonseftAnimation 2s ease-in-out forwards; //Animasyon ile girdiğim değer
+}
+.toh1one {
+  animation: toh1OneAnimation 2s ease-in-out forwards; //Animasyon ile girdiğim değer
+}
+
+.tohightwo {
+  display: flex;
+}
+
+.tohighone {
+  animation: leftall 2s ease-in-out forwards;
+}
 /* === Animations === */
 /* Basit fade-in animasyonu */
+
+@keyframes maskAnimation {
+  0% {
+    mask-position: calc(100% - -27px) calc(100% - 161px),
+      calc(100% - -150px) calc(100% - -1px); /* Başlangıç maskesi */
+  }
+
+  100% {
+    mask-position: calc(100% - -27px) calc(100% - 161px),
+      calc(100% - -100px) calc(100% - -1px); /* Son değişim */
+  }
+}
+
+@keyframes buttonseftAnimation {
+  0% {
+    right: 50px;
+  }
+
+  100% {
+    right: 100px;
+  }
+}
+
+@keyframes toh1OneAnimation {
+  0% {
+    left: -240px;
+  }
+  100% {
+    left: -150px;
+  }
+}
+
+@keyframes fadeBlurMove {
+  0% {
+    opacity: 0; /* Başlangıçta tamamen saydam */
+    filter: blur(30px); /* Başlangıçta bulanık */
+    transform: translateX(-100%); /* Başlangıçta ekranın sol dışına yerleştir */
+  }
+  100% {
+    opacity: 1; /* Ortada tamamen görünür */
+    filter: blur(0); /* Ortada bulanıklık yok */
+    transform: translateX(0); /* Ortada tam ortada */
+  }
+}
+
+@keyframes leftall {
+  0% {
+    transform: translateX(50%); /* Başlangıçta ekranın sol dışına yerleştir */
+  }
+  100% {
+    transform: translateX(0); /* Ortada tam ortada */
+  }
+}
