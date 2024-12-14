@@ -39,6 +39,30 @@ $brandbox: linear-gradient(0deg, #c9c0c0, #898282);
   flex-direction: column;
 }
 
+// Yan yana kutular için 1920x1080 çözünürlük
+@mixin sameResolutionHight {
+  width: 900px;
+  height: 720px;
+}
+
+// Yan yana kutular için 1366x1080 çözünürlük
+@mixin sameResolutionHightTwo {
+  width: 640px;
+  height: 512px;
+}
+
+// Üst üste kutular için 766x1080 çözünürlük
+@mixin sameResolutionHightTwoLite {
+  width: 640px;
+  height: 480px;
+}
+
+// Üst üste kutular için 400x1080 çözünürlük
+@mixin sameResolutionHightFour {
+  width: 360px;
+  height: 400px;
+}
+
 /* === Reset Styles === */
 * {
   margin: 0;
@@ -47,20 +71,10 @@ $brandbox: linear-gradient(0deg, #c9c0c0, #898282);
 }
 
 body {
+  height: 1080px;
   background: $backcolor;
   @include flex-center; /* Flex merkezi ortalama */
   min-height: 100vh;
-}
-
-.h1one {
-  font-size: 80px;
-  font-family: h1title;
-  background: $h1titlebg;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  padding-bottom: 29px;
-  position: relative;
-  left: -240px;
 }
 
 /* === General Styles === */
@@ -134,6 +148,7 @@ body {
   background-image: url(/assets/imagees/okysvg.svg);
   background-size: contain;
   background-repeat: no-repeat;
+  position: relative;
 }
 
 .editable-divone {
@@ -158,21 +173,33 @@ body {
 }
 
 .highone {
-  width: 900px;
-  height: 720px;
+  @include sameResolutionHight;
+  // border: 1px solid yellow;
   animation: fadeBlurMove 2s ease-in-out forwards;
+  position: relative;
   overflow-x: 500px;
 }
 
 .hightwo {
   display: none; /* Başlangıçta gizli */
-  width: 900px;
-  height: 720px;
+  // border: 1px solid yellow;
+  @include sameResolutionHight;
   overflow: hidden;
   position: relative;
   top: -2px;
   z-index: -1;
   animation: fadeBlurMove 2s ease-in-out forwards;
+}
+
+.h1one {
+  font-size: 80px;
+  font-family: h1title;
+  background: $h1titlebg;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-bottom: 29px;
+  position: relative;
+  left: -240px;
 }
 
 .h1two {
@@ -223,9 +250,10 @@ body {
   display: grid;
   justify-items: center;
   align-items: center;
+  overflow: hidden;
 }
 
-.boxFoursİn > p {
+.text {
   font-size: 24px;
   font-family: boxfont;
   color: #000000;
@@ -233,14 +261,15 @@ body {
 
 .abso {
   position: absolute;
-  right: 43%;
-  top: 91%;
+  top: 100%; /* Kutuyu en alta sabitler */
+  left: 50%; /* Yatayda ortalar */
+  transform: translateX(-50%); /* Kutunun tam ortalanmasını sağlar */
 }
 
 .brandbox {
   width: 290px;
   height: 86px;
-  border-radius: 16px 16px 0 0;
+  border-radius: 16px;
   background-image: $brandbox;
   overflow: hidden;
   @include flex-center;
@@ -257,12 +286,10 @@ body {
 }
 
 /* === Again === */
-/* Basit fade-in animasyonu */
 
 .no-left-mask {
   animation: maskAnimation 2s ease-in-out forwards; /* Animasyon ekledik */
 }
-
 .tobuttonseft {
   animation: buttonseftAnimation 2s ease-in-out forwards; //Animasyon ile girdiğim değer
 }
@@ -330,5 +357,380 @@ body {
   }
   100% {
     transform: translateX(0); /* Ortada tam ortada */
+  }
+}
+
+/* === Responsive === */
+
+// Ekran genişliğine göre farklı mixin'leri uygula
+@media screen and (max-width: 1367px) {
+  .highone,
+  .hightwo {
+    @include sameResolutionHightTwo;
+  }
+  .h1one {
+    position: relative;
+    left: -173px;
+    top: 20px;
+    font-size: 60px;
+  }
+  .h1two {
+    font-size: 60px;
+    right: -82px;
+    top: 20px;
+  }
+  .mainbox,
+  .mainboxtwo {
+    width: 545.6px;
+    height: 328.9px;
+  }
+  .mainbox {
+    position: relative;
+    right: -70px;
+    top: 10px;
+    border-radius: 21px 21px 0 21px; /* Köşe yuvarlama */
+    mask: url(/assets/imagees/small-bordertwo.svg) center / contain no-repeat,
+      url(/assets/imagees/cutbordertwo.svg) center / contain no-repeat,
+      linear-gradient(#000000 0 0); //mask
+    /* Daha hassas konumlandırma için mask-size ve mask-position */
+    mask-size: 22rem, 35rem; /* Farklı maskeler için boyutlar ayrı ayrı belirlenebilir */
+    mask-position: calc(100% - -32px) /* x */ calc(100% - 102px),
+      /* y */ //small-border
+      calc(100% - -100px) /* x */ calc(100% - -1px); /* y */ //cutborder
+    mask-composite: exclude;
+  }
+  .buttonseft {
+    top: 135px;
+    border-radius: 21px;
+    width: 155.9px;
+    height: 127.3px;
+  }
+  .svgimp {
+    width: 35px;
+    height: 35px;
+  }
+
+  .editable-divone {
+    padding: 15px 15px 0 15px;
+    width: 547px;
+    height: 220px;
+    font-size: 18px;
+  }
+
+  .editable-divtwo {
+    padding: 0 0 15px 15px;
+    width: 395px;
+    height: 120px;
+    font-size: 18px;
+    overflow-y: hidden;
+  }
+
+  .mainboxtwo {
+    position: relative;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    top: -68px;
+  }
+
+  .h1Three {
+    font-size: 18px;
+    position: relative;
+    top: -14px;
+  }
+
+  .boxFoursİn {
+    width: 183.7px;
+    height: 46.9px;
+    border-radius: 17.8px;
+  }
+
+  .text {
+    font-size: 18px;
+  }
+
+  @keyframes maskAnimation {
+    0% {
+      mask-position: calc(100% - -32px) /* x */ calc(100% - 102px),
+        /* y */ //small-border
+        calc(100% - -100px) /* x */ calc(100% - -1px); /* Başlangıç maskesi */
+    }
+
+    100% {
+      mask-position: calc(100% - -32px) /* x */ calc(100% - 102px),
+        /* y */ //small-border
+        calc(100% - -70px) /* x */ calc(100% - -1px); /* Son değişim */
+    }
+  }
+
+  @keyframes toh1OneAnimation {
+    0% {
+      left: -173px;
+    }
+    100% {
+      left: -110px;
+    }
+  }
+
+  @keyframes buttonseftAnimation {
+    0% {
+      right: 50px;
+    }
+    100% {
+      right: 80px;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .container {
+    @include flex-col;
+  }
+
+  .highone,
+  .hightwo {
+    @include sameResolutionHightTwoLite;
+  }
+
+  .mainbox {
+    mask-position: calc(100% - -32px) /* x */ calc(100% - 102px),
+      /* y */ //small-border
+      calc(100% - -70px) /* x */ calc(100% - -1px); /* Son değişim */
+  }
+
+  .mainboxtwo {
+    right: -45px;
+    top: -60px;
+  }
+
+  .buttonseft {
+    right: 80px;
+  }
+  .h1one {
+    left: -110px;
+  }
+
+  .h1two {
+    top: -10px;
+    left: 50px;
+  }
+
+  .abso {
+    position: absolute;
+    top: 1030px; /* Kutuyu en alta sabitler */
+    left: 50%; /* Yatayda ortalar */
+    transform: translateX(-50%); /* Kutunun tam ortalanmasını sağlar */
+  }
+
+  .brandbox {
+    width: 180.4px;
+    height: 50.1px;
+  }
+
+  .texttobrand {
+    font-family: brandfont;
+    font-size: 25px;
+  }
+
+  .rr {
+    font-size: 20px;
+    padding-bottom: 20px;
+  }
+
+  @keyframes maskAnimation {
+    100% {
+      mask-position: calc(100% - -32px) /* x */ calc(100% - 102px),
+        /* y */ //small-border
+        calc(100% - -70px) /* x */ calc(100% - -1px); /* Son değişim */
+    }
+  }
+
+  @keyframes buttonseftAnimation {
+    100% {
+      right: 80px;
+    }
+  }
+
+  @keyframes toh1OneAnimation {
+    0% {
+      left: -110px;
+    }
+    100% {
+      left: -20px;
+    }
+  }
+
+  @keyframes fadeBlurMove {
+    0% {
+      opacity: 0; /* Başlangıçta tamamen saydam */
+      filter: blur(30px); /* Başlangıçta bulanık */
+      transform: translateY(
+        -100%
+      ); /* Başlangıçta ekranın sol dışına yerleştir */
+    }
+    100% {
+      opacity: 1; /* Ortada tamamen görünür */
+      filter: blur(0); /* Ortada bulanıklık yok */
+      transform: translateY(0); /* Ortada tam ortada */
+    }
+  }
+
+  @keyframes leftall {
+    0% {
+      transform: translateY(50%); /* Başlangıçta ekranın sol dışına yerleştir */
+    }
+    100% {
+      transform: translateY(0); /* Ortada tam ortada */
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .container {
+    @include flex-col;
+  }
+
+  .highone,
+  .hightwo {
+    @include sameResolutionHightFour;
+  }
+
+  .mainbox {
+    width: 340px;
+    height: 240px;
+    position: relative;
+    right: -50px;
+    top: 10px;
+    border-radius: 14px 14px 0 14px; /* Köşe yuvarlama */
+    mask: url(/assets/imagees/small-borderthree.svg) center / contain no-repeat,
+      url(/assets/imagees/cutborderthree.svg) center / contain no-repeat,
+      linear-gradient(#000000 0 0); //mask
+    /* Daha hassas konumlandırma için mask-size ve mask-position */
+    mask-size: 22rem, 35rem; /* Farklı maskeler için boyutlar ayrı ayrı belirlenebilir */
+    mask-composite: exclude;
+    mask-position: calc(100% - -39px) /* x */ calc(100% - 41px),
+      /* y */ //small-border
+      calc(100% - -26px) /* x */ calc(100% - -1px); /* Son değişim */
+  }
+
+  .mainboxtwo {
+    width: 340px;
+    height: 240px;
+    right: -8px;
+    top: -60px;
+    border-radius: 14px;
+    gap: 20px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .editable-divone {
+    padding: 10px 10px 0 10px;
+    width: 340px;
+    height: 172px;
+    font-size: 14px;
+  }
+
+  .editable-divtwo {
+    padding: 0 0 10px 10px;
+    width: 340px;
+    height: 120px;
+    font-size: 14px;
+    overflow-y: hidden;
+  }
+
+  .buttonseft {
+    width: 100px;
+    height: 80px;
+    top: 112px;
+    right: 50px;
+    border-radius: 14px;
+  }
+  .h1one {
+    left: 0;
+    font-size: 40px;
+  }
+
+  .h1two {
+    font-size: 40px;
+    top: -2px;
+    left: 10px;
+  }
+
+  .svgimp {
+    width: 25px;
+    height: 25px;
+  }
+
+  .h1Three {
+    font-size: 11px;
+  }
+
+  .boxFoursİn {
+    width: 150px; // Küçük ekranlar için genişlik (örnek değer)
+    height: 23px; // Küçük ekranlar için yükseklik (örnek değer)
+  }
+
+  .text {
+    font-size: 14px;
+  }
+
+  .brandbox {
+    width: 180.4px;
+    height: 50.1px;
+    border-radius: 12px;
+  }
+
+  .texttobrand {
+    font-family: brandfont;
+    font-size: 25px;
+  }
+
+  .rr {
+    font-size: 20px;
+    padding-bottom: 20px;
+  }
+
+  @keyframes maskAnimation {
+    100% {
+      mask-position: calc(100% - -39px) /* x */ calc(100% - 41px),
+        /* y */ //small-border
+        calc(100% - -26px) /* x */ calc(100% - -1px); /* Son değişim */
+    }
+  }
+
+  @keyframes buttonseftAnimation {
+    100% {
+      right: 50px;
+    }
+  }
+
+  @keyframes toh1OneAnimation {
+    100% {
+      left: 0;
+    }
+  }
+
+  @keyframes fadeBlurMove {
+    0% {
+      opacity: 0; /* Başlangıçta tamamen saydam */
+      filter: blur(30px); /* Başlangıçta bulanık */
+      transform: translateY(
+        -100%
+      ); /* Başlangıçta ekranın sol dışına yerleştir */
+    }
+    100% {
+      opacity: 1; /* Ortada tamamen görünür */
+      filter: blur(0); /* Ortada bulanıklık yok */
+      transform: translateY(0); /* Ortada tam ortada */
+    }
+  }
+
+  @keyframes leftall {
+    0% {
+      transform: translateY(50%); /* Başlangıçta ekranın sol dışına yerleştir */
+    }
+    100% {
+      transform: translateY(0); /* Ortada tam ortada */
+    }
   }
 }
