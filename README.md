@@ -45,6 +45,8 @@ Open the project directory in your file explorer.
 
 ## Visuals
 
+![Uploading 1219 (1)(2) (1).gif…]()
+
 
 
 
