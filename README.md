@@ -30,13 +30,13 @@ cd word-analysis-tool
 
 ## Running the Project
 - **Option 1**: Using Live Server
- - Install a Live Server extension for your code editor (e.g., in VS Code).
- - Right-click on **index.html** and select "Open with Live Server."
- - The project will open automatically in your default browser.
+ Install a Live Server extension for your code editor (e.g., in VS Code).
+ Right-click on **index.html** and select "Open with Live Server."
+ The project will open automatically in your default browser.
 
 - **Option 2**: Manual Method
- - Open the project directory in your file explorer.
- - Double-click **index.html** to open it in your preferred browser.
+Open the project directory in your file explorer.
+ Double-click **index.html** to open it in your preferred browser.
 
 ## Usage
 - **1.** Paste or type your text into the input field.
